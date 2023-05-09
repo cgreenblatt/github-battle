@@ -10,7 +10,7 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
   return (
     <select
       onChange={(e) => onUpdateLanguage(e.target.value)}
-      selected={selected}
+      value={selected}
     >
       {languages.map((language) => (
         <option key={language} value={language}>
@@ -40,7 +40,8 @@ const reducer = (state, action) => {
         };
         case 'setRepo' : return {
             loading: false,
-            repos: { ...state.repos, [action.repo.selectedLanguage]: action.repo.repos }
+            repos: { ...state.repos, [action.repo.selectedLanguage]: action.repo.repos },
+            error: '',
         };
         case 'setError' : return {
             ...state,
@@ -60,7 +61,6 @@ export default function Popular() {
         fetchPopularRepos(selectedLanguage)
             .then((repos) => {
                 fetchedLanguages.current.push(selectedLanguage);
-                console.log('fetched languages.current', fetchedLanguages.current);
                 dispatch({ type: 'setRepo', repo: { selectedLanguage, repos } });
             })
             .catch((error) => {
