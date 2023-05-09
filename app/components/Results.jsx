@@ -68,16 +68,18 @@ Card.propTypes = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'loading': return {
+      loading: true,
+    }
     case 'error': 
       return {
-        ...state,
         error: action.error.message,
         loading: false
       }
     case 'success' :
       return {
-        ...state,
         loading: false,
+        error: '',
         winner: action.winner,
         loser: action.loser
       }
