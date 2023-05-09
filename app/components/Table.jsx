@@ -47,7 +47,6 @@ MoreInfo.propTypes = {
   language: PropTypes.string,
   updated_at: PropTypes.string.isRequired,
   watchers: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
   login: PropTypes.string.isRequired,
 };
 
@@ -77,8 +76,7 @@ function TableRow({
   language,
   watchers,
 }) {
-  const { login, avatar_url, type } = owner;
-
+  const { login, avatar_url } = owner;
   return (
     <tr>
       <td>{index + 1}</td>
@@ -90,7 +88,6 @@ function TableRow({
               language={language}
               updated_at={updated_at}
               watchers={watchers}
-              type={type}
               login={login}
             />
           }
